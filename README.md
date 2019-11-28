@@ -19,3 +19,4 @@ new_york_city.csv
 ### Credits
 Did not consult any repos or blogs.
 Shout out to the course instructor. Very engaging dude.
+And overall a very informative course
