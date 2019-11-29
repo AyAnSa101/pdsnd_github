@@ -167,10 +167,10 @@ def user_stats(df):
     # TO DO: Display earliest, most recent, and most common year of birth
     #df['Birth Year'] = pd.to_datetime(df['Birth Year'])
     early_birth_year = df['Birth Year'].min()
-    recent_yob = df['Birth Year'].max()
+    recent_birth_year = df['Birth Year'].max()
     mode_yob = df['Birth Year'].mode()[0]
 
-    print("The earliest,most recent and most common year of birth are the following: {}, {}, {}".format(early_yob,recent_yob,mode_yob))
+    print("The earliest,most recent and most common year of birth are the following: {}, {}, {}".format(early_birth_year,recent_birth_year,mode_yob))
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
