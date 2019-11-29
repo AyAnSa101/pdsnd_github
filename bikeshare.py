@@ -20,32 +20,32 @@ def get_filters():
     city_list = ['chicago','new york city','washington']
     month_list = ['all','january','february','march','april','may','june']
     weekday_list = ['all','monday','tuesday','wednesday','thursday','friday','saturday','sunday']
-    
+
     while True:
         city = input ("Please enter the city you would like to explore between the following choices: Chicago, New York City and Washington: ").lower()
         if city not in city_list:
             print("Your city input was incorrect!")
             continue
         else:
-    
+
     # TO DO: get user input for month (all, january, february, ... , june)
-            while True:    
+            while True:
                 month = input("Please enter the month (in full), you would like to explore. If you would like to explore all available months, please enter \'all\': ").lower()
                 if month not in month_list:
                     print("Your month input was incorrect!")
                     continue
                 else:
-    
+
     # TO DO: get user input for day of week (all, monday, tuesday, ... sunday)
-                    while True:        
+                    while True:
                         day = input("Please enter the day of week (in full), you would like to explore. If you would like to explore all the days of the week, please enter \'all\': ").lower()
                         if day not in weekday_list:
                             print("Your weekday input was incorrect!")
-                            continue            
+                            continue
                         else:
                             break
-                    break   
-            break        
+                    break
+            break
     print('-'*40)
     return city, month, day
 
@@ -76,7 +76,7 @@ def load_data(city, month, day):
         # use the index of the months list to get the corresponding int
         months = ['january', 'february', 'march', 'april', 'may', 'june']
         month = months.index(month) + 1
-    
+
         # filter by month to create the new dataframe
         df = df[df['month'] == month]
 
@@ -108,8 +108,8 @@ def time_stats(df):
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
-    
-    
+
+
 def station_stats(df):
     """Displays statistics on the most popular stations and trip."""
 
@@ -119,15 +119,15 @@ def station_stats(df):
     # TO DO: display most commonly used start station
     mode_start_station = df['Start Station'].mode()[0]
     print("The most commonly used start station was: {}".format(mode_start_station))
-    
+
     # TO DO: display most commonly used end station
     mode_end_station = df['End Station'].mode()[0]
     print("The most commonly used end station was: {}".format(mode_end_station))
 
     # TO DO: display most frequent combination of start station and end station trip
     frequent_trip_combo = df.groupby(['Start Station','End Station']).size().nlargest(1)
-    print("The most frequest trip start station and end station combination was: {}".format(frequent_trip_combo)) 
-    
+    print("The most frequest trip start station and end station combination was: {}".format(frequent_trip_combo))
+
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
@@ -163,13 +163,13 @@ def user_stats(df):
     # TO DO: Display counts of gender
     gender = df['Gender'].value_counts().to_string()
     print("Here is a count of the trips taken by gender: {}".format(gender))
-    
+
     # TO DO: Display earliest, most recent, and most common year of birth
     #df['Birth Year'] = pd.to_datetime(df['Birth Year'])
-    early_yob = df['Birth Year'].min()
+    early_birth_year = df['Birth Year'].min()
     recent_yob = df['Birth Year'].max()
     mode_yob = df['Birth Year'].mode()[0]
-    
+
     print("The earliest,most recent and most common year of birth are the following: {}, {}, {}".format(early_yob,recent_yob,mode_yob))
 
     print("\nThis took %s seconds." % (time.time() - start_time))
@@ -189,8 +189,8 @@ def main():
         restart = input('\nWould you like to restart the statistical analysis? Enter yes or no.\n')
         if restart.lower() != 'yes':
             break
-  
-# Displays the raw data, 5 rows at a time, if propmted by user   
+
+# Displays the raw data, 5 rows at a time, if propmted by user
     while True:
         size = 0
         view_raw_data = input('\nWould you like to view the raw data? Enter yes or no.\n')
@@ -199,16 +199,16 @@ def main():
         else:
             #print(df.head())
             print(df[size:size+5])
-            
-        while True:     
+
+        while True:
             more_data = input('\nWould you to view more rows of the raw data? Enter yes or no.\n')
             size+=5
             if more_data.lower() != 'yes':
                 break
-            else:    
+            else:
                 print(df[size:size+5])
-        break        
-        
+        break
+
 
 if __name__ == "__main__":
 	main()
